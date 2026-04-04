@@ -8,5 +8,27 @@ fn main() {
     let _N: usize = it.next().unwrap().parse().unwrap();
     let _M: usize = it.next().unwrap().parse().unwrap();
 
-    
+    let nums: Vec<i32> = it.map(|s| s.parse().unwrap()).collect();
+    let mut best = 0;
+    dfs(&nums, 0, 0, 0, _M, &mut best);
+    println!("{}", best);
+}
+
+fn dfs(
+    nums: &Vec<i32>,
+    start: usize,
+    depth: usize, 
+    sum: i32,
+    m: usize,
+    best: &mut i32
+) {
+    if depth == 3{
+        if sum <= m as i32{
+            *best = (*best).max(sum);
+        }
+        return;
+    }
+    for i in start..nums.len(){
+        dfs(nums, i+1, depth+1, sum+nums[i], m, best);
+    }
 }
