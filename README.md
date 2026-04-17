@@ -6,7 +6,7 @@ This repository is dedicated to practicing problem solving (PS), studying algori
 
 Problems are solved from the following platforms:
 
-* Baekjoon (Expired)
+* Baekjoon (Expired) (https://github.com/Hueok/codingTest_study.git)
 * Programmers
 * LeetCode
 
