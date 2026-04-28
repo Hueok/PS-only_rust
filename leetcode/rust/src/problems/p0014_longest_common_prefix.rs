@@ -3,16 +3,17 @@ pub struct Solution;
 impl Solution {
     pub fn longest_common_prefix(strs: Vec<String>) -> String {
         let mut result = String::new();
-        
-        let mut i = 0;
-        loop {
-            let mut prefix = strs[0].as_bytes[i];
-            if strs.iter().all(|&s| s.as_bytes()[i] == prefix) {
-                result.push_str(prefix);
-            } else{
+        let mut strs = strs.clone();
+        strs.sort_unstable();
+
+        for i in 0..(strs[0].len().min(strs[strs.len()-1].len())){
+            if strs[0].as_bytes()[i] as char != strs[strs.len()-1].as_bytes()[i] as char {
                 break;
             }
+            result.push_str(&(strs[0].as_bytes()[i] as char).to_string());
         }
+        result
+
     }
 }
 
