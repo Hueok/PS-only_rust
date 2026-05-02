@@ -2,18 +2,17 @@ pub struct Solution;
 
 impl Solution {
     pub fn is_isomorphic(s: String, t: String) -> bool {
-        use std::collections::HashMap;
+        let s  = s.as_bytes();
+        let t  = t.as_bytes();
 
-        let s: Vec<char> = s.chars().collect();
-        let t: Vec<char> = t.chars().collect();
-
-        let mut dict = HashMap::new();
+        let mut dict = [0u8; 129];
         let mut used = [false; 129];
 
         for i in 0..s.len() {
-            if let Some(v) = dict.get_mut(&s[i]) {
+            if dict[s[i] as usize] != 0{
                 // s -> t character already used
-                if *v != t[i] {
+                if dict[s[i] as usize] != t[i] {
+                    // a -> b,c
                     return false;
                 }
             } else{
@@ -22,7 +21,7 @@ impl Solution {
                     // t domain already mapped
                     return false;
                 }
-                dict.insert(s[i], t[i]);
+                dict[s[i] as usize] = t[i];
                 used[t[i] as usize] = true;
             }
         }
