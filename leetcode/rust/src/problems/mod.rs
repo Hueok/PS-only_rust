@@ -1,1 +1,1 @@
-pub mod p0290_word_pattern;
+pub mod p0242_valid_anagram;
